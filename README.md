@@ -1,2 +1,2 @@
-# birthday-wishes
+# index.html
 new project
