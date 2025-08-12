@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <title>Happy Birthday My Love</title>
+
+        <style>
+        body {
+            margin: 0;
+            background: black linear-gradient(to top right ,#ff9a9e, #fad0c4);
+            color: white;
+            font-family: 'segoe UI' sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .h1 {
+            font-size: 2.8em;
+            margin-top: 0.2em;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        video {
+             max-width: 90%;
+             border: 8px solid white;
+             border-radius: 15px;
+             box-shadow: 0 0 20px rgba(255, 0, 128, 0.6);
+             margin-top: 20px;
+            animation: fadeIn 3s ease-in-out;
+        } 
+        p {
+            font-size: 1.4em;
+            margin: 20px auto;
+            max-width: 700px;
+        }
+        .heart {
+                font-size: 2.5em;
+                color: red;
+                animation: beat 1s infinite alternate;
+        }
+        @keyframes beat {
+            to {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100%{
+                opacity: 1;
+                transform: translateY(0);}
+        }
+            .hidden-message {
+                display: none;
+                font-size: 1.6em;
+                margin-top: 20px;
+                background: rgba(255,255,255,0.2);
+                padding: 15px;
+                border-radius: 10px;
+
+            }
+            .btn {
+                background: #fff;
+                color: #ff69b4;
+                padding: 12px 25px;
+                border: none;
+                font-size: 1em;
+                border-radius: 25px;
+                cursor: pointer;
+                margin-top: 30px;
+                transition: 0.3s ease;
+            }
+
+            .btn:hover {
+                background: #ffe6f2;
+            }
+
+            .confetti, .hearts {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 999;
+            }
+    </style>
+</head>
+      <body>
+        <h1>Happy Birthday,To My Love!🎂💖</h1>
+        
+        <p>
+            You don't need a special day to remind me how important you are in my life.
+            You are blessing my life every day and you deserve to be loved every day. 
+                     "thank you for being You."
+          <span class="heart">💗</span>           
+        </p>
+
+    <button class="btn"
+        onclick="showMessage()">Click for Surprise </button>
+        <div class="hidden-message" id="specialMsg">
+            My love, You're the most beautiful part of my life and
+                           most beautiful thingh that ever happened to me.
+                                               I love you more than words can express.
+                               I will Love you forever and always! ♥🌹                
+        </div>
+        <canvas class="confetti"></canvas>
+        <canvas class="hearts"></canvas>
+        <audio autoplay>
+            <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+        </audio>
+
+        <script>
+            function showMessage() {
+                document.getElementById('specialMsg').style.display = 'block';
+            }
+
+            // Confetti animation
+            const confetticanvas = document.querySelector('.confetti');
+            const ctx = confetticanvas.getContext('2d');
+            confetticanvas.width = window.innerWidth;
+            confetticanvas.height = window.innerHeight;
+            let confetti = [];
+            for (let i = 0; i < 150; i++) {
+                confetti.push({
+                    x: Math.random() * confetticanvas.width,
+                    y: Math.random() * confetticanvas.height -confetticanvas.height,
+                    r: Math.random() * 6 + 4,
+                    d: Math.random() * 0.5 + 0.5,
+                });
+            }
+            function drawconfetti() {
+                cCtx.clearRect(0, 0, confetticanvas.width, confetticanvas.height);
+                       confetti.forEach((p) => {
+                    cCtx.beginPath();
+                    cCtx.arc(c.x, c.y, p.r, 0, Math.PI * 2, false);
+                    cCtx.fillStyle = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+                    cCtx.fill();
+                       });
+                       updateConfetti();
+            }
+            function updateConfetti() { 
+                confetti.forEach(c => {
+                    c.y += c.d;
+                    if (c.y > confetticanvas.height) {
+                        c.x = Math.random() * confetticanvas.width;
+                        c.y = -10;
+                        };
+                    });
+            }
+            setInterval(drawconfetti, 20);
+            // Hearts animation
+            const heartsCanvas = document.querySelector('.hearts');
+            const hCtx = heartsCanvas.getContext('2d');
+            heartsCanvas.width = window.innerWidth;
+            heartsCanvas.height = window.innerHeight;
+            let hearts = [];
+            for (let i = 0; i< 30; i++) {
+                hearts.push({
+                    x: Math.random() * heartsCanvas.width,
+                    y: Math.random() * heartsCanvas.height - heartsCanvas.height,
+                    r: Math.random() * 20 + 20,
+                    d: Math.random() * 1 + 0.5,
+                });
+            }
+            function drawHearts() {
+                hCtx.clearRect(0, 0, heartsCanvas.width, heartsCanvas.height);
+                hearts.forEach(h => {
+                    hCtx.font = `${h.size}px Arial`;
+                    hCtx.fillText('❤️', h.x, h.y);
+            });
+            updateHearts();
+            }
+             function updateHearts() {
+                hearts.forEach(h => {
+                    h.y += h.speed;
+                    if (h.y > heartsCanvas.height) {
+                        h.x = Math.random() * heartsCanvas.width;
+                        h.y = -20;
+                    }
+                });
+            }
+            setInterval(drawHearts, 30);
+        </script>
+    </body>
+</html>
